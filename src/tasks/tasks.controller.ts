@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task, taskStatus } from './task.model';
@@ -27,6 +29,7 @@ export class TasksController {
     return this.taskService.getTaskById(id);
   }
   @Post()
+  @UsePipes(ValidationPipe)
   crateTask(@Body() createTaskDto: CreateTaskDto): Task {
     return this.taskService.createTask(createTaskDto);
   }
